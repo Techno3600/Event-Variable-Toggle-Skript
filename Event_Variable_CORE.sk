@@ -1,0 +1,157 @@
+command /e <text> <text>:
+    description: Enables/Disables Different Variables/Events on the server.
+    usage: &b/e <event/variable> [enable/disable] &eOR &b/e check all
+    aliases: e
+    executable by: players, console
+    permission: skript.trigger
+    trigger:
+        if arg-1 is "check" or "c":
+            if arg-2 is "all" or "a":
+                if PvP is disabled:
+                    message "&ePlayer vs. Player&7: &cFalse"
+                else if PvP is enabled:
+                    message "&ePlayer vs. Player&7: &aTrue"
+                if {evp} is true:
+                    message "&eEntity vs. Player&7: &cFalse"
+                else if {evp} is false:
+                    message "&eEntity vs. Player&7: &aTrue"
+                if {pve} is true:
+                    message "&ePlayer vs. Entity&7: &cFalse"
+                else if {pve} is false:
+                    message "&ePlayer vs. Entity&7: &aTrue"
+                if {da} is true:
+                    message "&ePlayer Damage&7: &cFalse"
+                else if {da} is false:
+                    message "&ePlayer Damage&7: &aTrue"
+                if {fd} is true:
+                    message "&eFall Damage&7: &cFalse"
+                else if {fd} is false:
+                    message "&eFall Damage&7: &aTrue"
+                if {bp} is true:
+                    message "&eBlock Placement&7: &cFalse"
+                else if {bp} is false:
+                    message "&eBlock Placement&7: &aTrue"
+                if {bb} is true:
+                    message "&eBlock Break&7: &cFalse"
+                else if {bb} is false:
+                    message "&eBlock Break&7: &aTrue"
+                if {id} is true:
+                    message "&eItem Drop&7: &cFalse"
+                else if {id} is false:
+                    message "&eItem Drop&7: &aTrue"
+                if {ip} is true:
+                    message "&eItem Pickup&7: &cFalse"
+                else if {ip} is false:
+                    message "&eItem Pickup&7: &aTrue"
+        if arg-1 is "pvp":
+            if arg-2 is "enable" or "e":
+                enable PvP in all worlds
+                broadcast "&5Server Settings> &7Player vs. Player: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                disable PvP in all worlds
+                broadcast "&5Server Settings> &7Player vs. Player: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "evp":
+            if arg-2 is "enable" or "e":
+                set {evp} to false
+                broadcast "&5Server Settings> &7Entity vs. Player: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {evp} to true
+                broadcast "&5Server Settings> &7Entity vs. Player: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"                
+        if arg-1 is "pve":
+            if arg-2 is "enable" or "e":
+                set {pve} to false
+                broadcast "&5Server Settings> &7Player vs. Entity: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {pve} to true
+                broadcast "&5Server Settings> &7Player vs. Entity: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"           
+        if arg-1 is "da" or "damage_all":
+            if arg-2 is "enable" or "e":
+                set {da} to false
+                broadcast "&5Server Settings> &7Player Damage: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {da} to true
+                broadcast "&5Server Settings> &7Player Damage: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "fd" or "fall_damage":
+            if arg-2 is "enable" or "e":
+                set {fd} to false
+                broadcast "&5Server Settings> &7Fall Damage: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {fd} to true
+                broadcast "&5Server Settings> &7Fall Damage: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"                
+        if arg-1 is "bp" or "block_placement":
+            if arg-2 is "enable" or "e":
+                set {bp} to false
+                broadcast "&5Server Settings> &7Block Placement: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {bp} to true
+                broadcast "&5Server Settings> &7Block Placement: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "bb" or "block_break":
+            if arg-2 is "enable" or "e":
+                set {bb} to false
+                broadcast "&5Server Settings> &7Block Break: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {bb} to true
+                broadcast "&5Server Settings> &7Block Break: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "id" or "item_drop":
+            if arg-2 is "enable" or "e":
+                set {id} to false
+                broadcast "&5Server Settings> &7Item Drop: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {id} to true
+                broadcast "&5Server Settings> &7Item Drop: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"                
+        if arg-1 is "ip" or "item_pickup":
+            if arg-2 is "enable" or "e":
+                set {ip} to false
+                broadcast "&5Server Settings> &7Item Pickup: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {ip} to true
+                broadcast "&5Server Settings> &7Item Pickup: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+on damage:
+    if {da} is true:
+        cancel the event
+on damage of player:
+    if {evp} is true:
+        if attacker is not a player:
+            cancel event
+on damage of player:
+    if {evp} is true:
+        if attacker is not a player:
+            cancel event
+on damage of an entity:
+    if {pve} is true:
+        if attacker is player:
+            cancel event
+on damage of player:
+    if {fd} is true:
+        if damage cause is fall:
+            cancel event
+on place:
+    if {bp} is true:
+        cancel event
+on break:
+    if {bb} is true:
+        cancel the event
+on drop:
+    if {id} is true:
+        cancel the event
+on pick up:
+    if {ip} is true:
+        cancel the event
