@@ -2,4 +2,4 @@ To install this skript, first go to https://github.com/bensku/Skript/releases/do
 
 Then make sure it is enabled and loaded (/skript reload all) or (/skript enable Event_Variable_CORE)
 
-If typing "/e" and nothing pops up relating to the skript, then please PM me. Thanks!
+If typing "/e" and nothing pops up relating to the skript, then please PM me or create an issue at https://github.com/Techno3600/Event-Variable-Toggle-Skript/issues. Thanks!
