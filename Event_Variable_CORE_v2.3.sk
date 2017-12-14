@@ -1,0 +1,387 @@
+command /e [<text>] [<text>]:
+    description: Enables/Disables Different Variables/Events on the server.
+    aliases: attribute
+    permission: attribute.toggle
+    trigger:
+        if arg-1 is "bypass" or "admin":
+            if arg-2 is "on":
+                set {bypass.%player%} to true
+                message "&9Server Settings> &6&lADMIN BYPASS MODE: &a&lTRUE"
+            else if arg-2 is "off":
+                delete {bypass.%player%}
+                message "&9Server Settings> &6&lADMIN BYPASS MODE: &c&lFALSE"
+        if arg-1 is "check" or "c":
+            if arg-2 is not set:
+                if {bypass.%player%} is set:
+                    message "&6&lADMIN BYPASS: &a&lTRUE"
+                else:
+                    message "&6&lADMIN BYPASS: &c&lFALSE"
+                wait 3 ticks
+                if {pda} is true:
+                    message "&ePlayer Damage&7: &cFalse"
+                else if {pda} is false:
+                    message "&ePlayer Damage&7: &aTrue"
+                wait 3 ticks
+                if {nr} is true:
+                    message "&eNatural Regeneration&7: &aTrue"
+                else if {nr} is false:
+                    message "&eNatural Regeneration&7: &cFalse"
+                wait 3 ticks
+                if {eda} is true:
+                    message "&eEntity Damage&7: &cFalse"
+                else if {eda} is false:
+                    message "&eEntity Damage&7: &aTrue"                    
+                wait 3 ticks
+                if PvP is disabled:
+                    message "&ePlayer vs. Player&7: &cFalse"
+                else if PvP is enabled:
+                    message "&ePlayer vs. Player&7: &aTrue"
+                if {evp} is true:
+                    message "&eEntity vs. Player&7: &cFalse"
+                else if {evp} is false:
+                    message "&eEntity vs. Player&7: &aTrue"
+                wait 3 ticks
+                if {pve} is true:
+                    message "&ePlayer vs. Entity&7: &cFalse"
+                else if {pve} is false:
+                    message "&ePlayer vs. Entity&7: &aTrue"
+                wait 3 ticks
+                if {eve} is true:
+                    message "&eEntity vs. Entity&7: &cFalse"
+                else if {eve} is false:
+                    message "&eEntity vs. Entity&7: &aTrue"
+                wait 3 ticks
+                if {fd} is true:
+                    message "&eFall Damage&7: &cFalse"
+                else if {fd} is false:
+                    message "&eFall Damage&7: &aTrue"
+                wait 3 ticks
+                if {ed} is true:
+                    message "&eExplosion Damage&7: &cFalse"
+                else if {ed} is false:
+                    message "&eExplosion Damage&7: &aTrue"
+                wait 3 ticks
+                if {sd} is true:
+                    message "&eSuffocation Damage&7: &cFalse"
+                else if {sd} is false:
+                    message "&eSuffocation Damage&7: &aTrue"
+                wait 3 ticks
+                if {bp} is true:
+                    message "&eBlock Placement&7: &cFalse"
+                else if {bp} is false:
+                    message "&eBlock Placement&7: &aTrue"
+                wait 3 ticks
+                if {bb} is true:
+                    message "&eBlock Break&7: &cFalse"
+                else if {bb} is false:
+                    message "&eBlock Break&7: &aTrue"
+                wait 3 ticks
+                if {id} is true:
+                    message "&eItem Drop&7: &cFalse"
+                else if {id} is false:
+                    message "&eItem Drop&7: &aTrue"
+                wait 3 ticks
+                if {ip} is true:
+                    message "&eItem Pickup&7: &cFalse"
+                else if {ip} is false:
+                    message "&eItem Pickup&7: &aTrue"
+                wait 3 ticks
+                if {h} is true:
+                    message "&eHunger&7: &cFalse"
+                else if {h} is false:
+                    message "&eHunger&7: &aTrue"
+        if arg-1 is "pvp":
+            if arg-2 is "enable" or "e":
+                enable PvP in all worlds
+                broadcast "&9Server Settings> &7Player vs. Player: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                disable PvP in all worlds
+                broadcast "&9Server Settings> &7Player vs. Player: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "evp":
+            if arg-2 is "enable" or "e":
+                set {evp} to false
+                broadcast "&9Server Settings> &7Entity vs. Player: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {evp} to true
+                broadcast "&9Server Settings> &7Entity vs. Player: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"                
+        if arg-1 is "pve":
+            if arg-2 is "enable" or "e":
+                set {pve} to false
+                broadcast "&9Server Settings> &7Player vs. Entity: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {pve} to true
+                broadcast "&9Server Settings> &7Player vs. Entity: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"           
+        if arg-1 is "pda" or "player_damage_all":
+            if arg-2 is "enable" or "e":
+                set {pda} to false
+                broadcast "&9Server Settings> &7Player Damage: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {pda} to true
+                broadcast "&9Server Settings> &7Player Damage: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "fd" or "fall_damage":
+            if arg-2 is "enable" or "e":
+                set {fd} to false
+                broadcast "&9Server Settings> &7Fall Damage: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {fd} to true
+                broadcast "&9Server Settings> &7Fall Damage: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"                
+        if arg-1 is "bp" or "block_placement":
+            if arg-2 is "enable" or "e":
+                set {bp} to false
+                broadcast "&9Server Settings> &7Block Placement: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {bp} to true
+                broadcast "&9Server Settings> &7Block Placement: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "bb" or "block_break":
+            if arg-2 is "enable" or "e":
+                set {bb} to false
+                broadcast "&9Server Settings> &7Block Break: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {bb} to true
+                broadcast "&9Server Settings> &7Block Break: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "id" or "item_drop":
+            if arg-2 is "enable" or "e":
+                set {id} to false
+                broadcast "&9Server Settings> &7Item Drop: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {id} to true
+                broadcast "&9Server Settings> &7Item Drop: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"                
+        if arg-1 is "ip" or "item_pickup":
+            if arg-2 is "enable" or "e":
+                set {ip} to false
+                broadcast "&9Server Settings> &7Item Pickup: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {ip} to true
+                broadcast "&9Server Settings> &7Item Pickup: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "eda" or "entity_damage_all":
+            if arg-2 is "enable" or "e":
+                set {eda} to false
+                broadcast "&9Server Settings> &7Entity Damage: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {eda} to true
+                broadcast "&9Server Settings> &7Entity Damage: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "ed" or "explosion_damage":
+            if arg-2 is "enable" or "e":
+                set {ed} to false
+                broadcast "&9Server Settings> &7Explosion Damage: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {ed} to true
+                broadcast "&9Server Settings> &7Explosion Damage: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "h" or "Hunger":
+            if arg-2 is "enable" or "e":
+                set {h} to false
+                broadcast "&9Server Settings> &7Hunger: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {h} to true
+                broadcast "&9Server Settings> &7Hunger: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+                set hunger meter to 20
+        if arg-1 is "eve":
+            if arg-2 is "enable" or "e":
+                set {eve} to false
+                broadcast "&9Server Settings> &7Enity vs. Entity: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {eve} to true
+                broadcast "&9Server Settings> &7Enity vs. Entity: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "sd" or "suffocation_damage":
+            if arg-2 is "enable" or "e":
+                set {sd} to false
+                broadcast "&9Server Settings> &7Suffocation Damage: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                set {sd} to true
+                broadcast "&9Server Settings> &7Suffocation Damage: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "nr" or "natural_regeneration":
+            if arg-2 is "enable" or "e":
+                execute console command "/gamerule naturalRegeneration true"
+                set {nr} to true
+                broadcast "&9Server Settings> &7Natural Regeneration: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "disable" or "d":
+                execute console command "/gamerule naturalRegeneration false"
+                set {nr} to false
+                broadcast "&9Server Settings> &7Natural Regeneration: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        if arg-1 is "toggle_all":
+            if arg-2 is "on":
+                set {pda} to false
+                set {evp} to false
+                set {pve} to false
+                set {fd} to false
+                set {bp} to false
+                set {bb} to false
+                set {id} to false
+                set {ip} to false
+                set {eda} to false
+                set {ed} to false
+                set {h} to false
+                set {eve} to false
+                set {sd} to false
+                set {nr} to true
+                set {bypass.%player%} to false
+                enable PvP in all worlds
+                execute console command "/gamerule naturalRegeneration true"
+                broadcast "&9Server Settings> &7Player Damage: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Natural Regeneration: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Entity Damage: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Player vs. Player: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Entity vs. Player: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Player vs. Entity: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Entity vs. Entity: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Fall Damage: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Explosion Damage: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Suffocation Damage: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Block Placement: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Block Break: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Item Drop: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Item Pickup: &aTrue"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Hunger: &aTrue"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+            else if arg-2 is "off":
+                set {pda} to true
+                set {evp} to true
+                set {pve} to true
+                set {fd} to true
+                set {bp} to true
+                set {bb} to true
+                set {id} to true
+                set {ip} to true
+                set {eda} to true
+                set {ed} to true
+                set {h} to true
+                set {eve} to true
+                set {sd} to true
+                set {nr} to false
+                set {bypass.%player%} to false
+                disable PvP in all worlds
+                execute console command "/gamerule naturalRegeneration false"
+                broadcast "&9Server Settings> &7Player Damage: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Natural Regeneration: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Entity Damage: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Player vs. Player: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Entity vs. Player: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Player vs. Entity: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Entity vs. Entity: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Fall Damage: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Explosion Damage: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Suffocation Damage: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Block Placement: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Block Break: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Item Drop: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Item Pickup: &cFalse"
+                wait 1 tick
+                broadcast "&9Server Settings> &7Hunger: &cFalse"
+                execute console command "/playsound minecraft:block.note.harp master @a ~ ~ ~ 10000000"
+        else if arg-1 is "help":
+            message "&9Server Settings> &7Listing Commands:"
+            message "&6Commands are not yet finshed in this area, use&e &ohttps://www.spigotmc.org/resources/skript-enable-disable-events-triggers-for-in-game-customization.49048&r &6to check commands"
+            message "&cTo report a bug error, go to&e &ohttps://github.com/Techno3600/Event-Variable-Toggle-Skript/issues&r&6."
+
+on damage of a player:
+    {pda} is true
+    cancel event
+on damage of player:
+    {evp} is true
+    attacker is not a player
+    cancel event
+on damage of an entity:
+    {pve} is true
+    attacker is a player
+    cancel event
+on damage of player:
+    {fd} is true
+    damage cause is fall
+    cancel event
+on place:
+    {bp} is true
+    {bypass.%player%} is not set
+    cancel event
+on break:
+    {bb} is true
+    {bypass.%player%} is not set
+    cancel event
+on drop:
+    {id} is true
+    {bypass.%player%} is not set
+    cancel event
+on pick up:
+    {ip} is true
+    {bypass.%player%} is not set
+    cancel event
+on damage of an entity:
+    {eda} is true
+    the entity is not a player
+    cancel event
+on damage:
+    {ed} is true
+    damage cause is entity explosion
+    cancel the event
+    damage cause is block explosion
+    cancel event
+on hunger meter change:
+    {h} is true
+    set hunger meter to 20
+on damage of an entity:
+    {eve} is true
+    attacker is not a player
+    cancel event
+on damage of a player:
+    {sd} is true
+    damage cause is suffocation
+    cancel event
+on join:
+   {bypass.%player%} is set
+   delete {bypass.%player%}
