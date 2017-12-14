@@ -1,4 +1,4 @@
-command /e <text> [<text>]:
+command /e [<text>] [<text>]:
     description: Enables/Disables Different Variables/Events on the server.
     aliases: attribute
     permission: attribute.toggle
@@ -8,13 +8,13 @@ command /e <text> [<text>]:
                 set {bypass.%player%} to true
                 message "&9Server Settings> &6&lADMIN BYPASS MODE: &a&lTRUE"
             else if arg-2 is "off":
-                set {bypass.%player%} to false
+                delete {bypass.%player%}
                 message "&9Server Settings> &6&lADMIN BYPASS MODE: &c&lFALSE"
         if arg-1 is "check" or "c":
             if arg-2 is not set:
-                if {bypass.%player%} is true:
+                if {bypass.%player%} is set:
                     message "&6&lADMIN BYPASS: &a&lTRUE"
-                else if {bypass.%player%} is false:
+                else:
                     message "&6&lADMIN BYPASS: &c&lFALSE"
                 wait 3 ticks
                 if {pda} is true:
@@ -347,19 +347,19 @@ on damage of player:
     cancel event
 on place:
     {bp} is true
-    {bypass.%player%} is false
+    {bypass.%player%} is not set
     cancel event
 on break:
     {bb} is true
-    {bypass.%player%} is false
+    {bypass.%player%} is not set
     cancel event
 on drop:
     {id} is true
-    {bypass.%player%} is false
+    {bypass.%player%} is not set
     cancel event
 on pick up:
     {ip} is true
-    {bypass.%player%} is false
+    {bypass.%player%} is not set
     cancel event
 on damage of an entity:
     {eda} is true
@@ -383,5 +383,5 @@ on damage of a player:
     damage cause is suffocation
     cancel event
 on join:
-   {bypass.%player%} is true
-   set {bypass.%player%} to false
+   {bypass.%player%} is set
+   delete {bypass.%player%}
