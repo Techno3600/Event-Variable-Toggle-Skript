@@ -1,6 +1,5 @@
 command /e [<text>] [<text>]:
     description: Enables/Disables Different Variables/Events on the server.
-    usage: &b/e <event/variable> [enable/disable] &eOR &b/e check &eOR &b/e admin on/off &eOR &b/e help
     aliases: attribute
     permission: attribute.toggle
     trigger:
